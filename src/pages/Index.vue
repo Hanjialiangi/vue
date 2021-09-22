@@ -1,0 +1,34 @@
+<template>
+    <el-container>
+  <el-header><HeaderBar /></el-header>
+  <el-container>
+    <el-aside width="12rem"><LeftNarBar/></el-aside>
+    <el-main><router-view/></el-main>
+  </el-container>
+  <el-footer height="4rem">footer</el-footer>
+</el-container>
+</template>
+<script type="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import HeaderBar from '@/components/views/narbar/HeaderBar.vue'
+import LeftNarBar from '@/components/views/narbar/LeftNarBar.vue'
+
+@Component({
+  components: {
+    HeaderBar,
+    LeftNarBar
+  }
+})
+export default class Index extends Vue {
+
+}
+</script>
+<style scoped>
+header.el-header{
+    padding: 0;
+}
+.el-aside{
+    height:40rem;
+    margin-top: 10px;
+}
+</style>
