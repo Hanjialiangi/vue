@@ -4,7 +4,7 @@
             <router-link :to ="`/correspondingsonglist/${item.id}`">
             <el-card class="box" :body-style="{ padding: '0px' }" shadow="hover">
                 <img class="image" :src="require(`@/assets/mv/${item.name}.jpg`)"/>
-                <span>{{item.label}}</span>
+                <span style="margin-left:5px">{{item.label}}</span>
             </el-card>
             </router-link>
         </el-col>

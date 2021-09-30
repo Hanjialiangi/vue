@@ -128,6 +128,7 @@ export default class HeaderBar extends Vue {
         display:flex;
 
         i {
+          cursor: pointer;
           margin-left:2rem;
           color:rgba(255, 255, 255, 0.562);
         &:hover{
@@ -135,6 +136,9 @@ export default class HeaderBar extends Vue {
             cursor: pointer;
         }
         }
+    }
+    i{
+        cursor: pointer;
     }
 }
 </style>
