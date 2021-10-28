@@ -1,7 +1,7 @@
 <template>
   <el-carousel :interval="4000" type="card" height="200px">
-    <div v-for="item in 7" :key="item" >
-    <el-carousel-item :style="{backgroundImage:'url(' + require('@/assets/carousel/wang'+item+'.jpg') + ')',backgroundSize: '100% auto'}">
+    <div v-for="(item,index) in carousel" :key="index" >
+    <el-carousel-item :style="{backgroundImage:'url(' + item.url + ')',backgroundSize: '100% auto'}">
     </el-carousel-item>
     </div>
   </el-carousel>
@@ -10,7 +10,15 @@
 import {Vue, Component} from 'vue-property-decorator'
 @Component
 export default class ImageDisplay extends Vue {
+  carousel=[{}]
 
+  mounted () {
+    this.$axios.get('/api/shuffing/figure').then(res => {
+      if (res.data) {
+        this.carousel = res.data
+      }
+    })
+  }
 }
 </script>
 <style lang="scss">

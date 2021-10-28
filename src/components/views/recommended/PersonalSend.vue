@@ -1,9 +1,9 @@
 <template>
      <el-row :gutter="1">
-        <el-col :span="8" v-for="item in list" :key="item.id">
+        <el-col :span="8" v-for="(item,index) in list" :key="index">
             <router-link :to ="`/correspondingsonglist/${item.id}`">
             <el-card class="box" :body-style="{ padding: '0px' }" shadow="hover">
-                <img class="image" :src="require(`@/assets/personal/${item.name}.jpg`)"/>
+                <img class="image" :src="item.url"/>
                 <span>{{item.label}}</span>
             </el-card>
             </router-link>
@@ -12,10 +12,18 @@
 </template>
 <script type="ts">
 import {Vue, Component} from 'vue-property-decorator'
-import {personal} from '@/Text/content.ts'
+
 @Component
 export default class PersonalSend extends Vue {
-    list = personal;
+    list = [{}];
+
+    mounted () {
+      this.$axios.get('/api/personal/send').then(res => {
+        if (res.data) {
+          this.list = res.data
+        }
+      })
+    }
 }
 </script>
 <style lang="scss" scoped>

@@ -1,10 +1,10 @@
 <template>
 <div>
     <el-row :gutter="180">
-        <el-col :span="4" v-for="item in list1" :key="item.id">
+        <el-col :span="4" v-for="(item,index) in list1" :key="index">
             <router-link :to ="`/correspondingsonglist/${item.id}`">
                 <el-card class="box" :body-style="{ padding: '0px' }" shadow="hover">
-                    <img class="image" :src="require(`@/assets/songlist/${item.name}.jpg`)"/>
+                    <img class="image" :src="item.url"/>
                     <span>{{item.label}}</span>
                 </el-card>
             </router-link>
@@ -13,10 +13,10 @@
     <el-row :gutter="180">
         <el-col :span="4" v-for="item in list2" :key="item.id">
             <router-link :to ="`/correspondingsonglist/${item.id}`">
-            <el-card class="box" :body-style="{ padding: '0px' }" shadow="hover">
-                <img class="image" :src="require(`@/assets/songlist/${item.name}.jpg`)"/>
-                <span>{{item.label}}</span>
-            </el-card>
+                <el-card class="box" :body-style="{ padding: '0px' }" shadow="hover">
+                    <img class="image" :src="item.url"/>
+                    <span>{{item.label}}</span>
+                </el-card>
             </router-link>
         </el-col>
     </el-row>
@@ -24,11 +24,23 @@
 </template>
 <script type="ts">
 import {Vue, Component} from 'vue-property-decorator'
-import {text, value} from '@/Text/content.ts'
 @Component
 export default class SongList extends Vue {
-    list1 =text;
-    list2 =value;
+    list1 =[{}];
+    list2 =[{}];
+
+    mounted () {
+      this.$axios.get('/api/song/list').then(res => {
+        this.list1.pop(); this.list2.pop()
+        if (res.data) {
+          for (let i = 0; i < res.data.length; i++) {
+            if (i > 4) {
+              this.list2.push(res.data[i])
+            } else { this.list1.push(res.data[i]) }
+          }
+        }
+      })
+    }
 }
 </script>
 <style lang="scss" scoped>
