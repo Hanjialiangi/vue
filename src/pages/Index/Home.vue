@@ -11,7 +11,7 @@
         <h2>推荐MV<i class="el-icon-arrow-right"/></h2>
         <RecommendedMV />
         </el-tab-pane>
-        <el-tab-pane label="专属订制" name="exclusive">专属订制</el-tab-pane>
+        <el-tab-pane label="专属订制" name="exclusive"><Order/></el-tab-pane>
         <el-tab-pane label="歌单" name="playlist">歌单</el-tab-pane>
         <el-tab-pane label="排行榜" name="ranklist">排行榜</el-tab-pane>
         <el-tab-pane label="歌手" name="singger">歌手</el-tab-pane>
@@ -24,13 +24,15 @@ import ImageDisplay from '@/components/views/recommended/ImageDisplay'
 import SongList from '@/components/views/recommended/SongList'
 import PersonalSend from '@/components/views/recommended/PersonalSend'
 import RecommendedMV from '@/components/views/recommended/RecommendedMV'
+import Order from '@/components/views/order/Order'
 
 @Component({
   components: {
     ImageDisplay,
     SongList,
     PersonalSend,
-    RecommendedMV
+    RecommendedMV,
+    Order
   }
 })
 export default class Home extends Vue {
